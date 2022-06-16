@@ -31,3 +31,7 @@ Copy enviroment variables
 **Verify on Etherscan**
 
 `npx hardhat verify --network goerli <CONTRACT ADDRESS> <...args>`
+
+**Mint NFT**
+
+`npx hadhat mint --network goerli <CONTRACT ADDRESS> <TO ADDRESS> <TOKEN URI>`
