@@ -9,10 +9,14 @@ contract NFTMinter is ERC721URIStorage, Ownable {
 
     constructor() ERC721("NFTMinter", "MINTER") {}
 
-    function mint(address to, string memory tokenUri) external onlyOwner returns (uint256) {
+    function _baseURI() internal pure override returns (string memory) {
+        return "ipfs://";
+    }
+
+    function mint(address to, string memory tokenURI) external onlyOwner returns (uint256) {
         ++_tokenId;
         _safeMint(to, _tokenId);
-        _setTokenURI(_tokenId, tokenUri);
+        _setTokenURI(_tokenId, tokenURI);
         return _tokenId;
     }
 }

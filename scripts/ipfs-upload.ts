@@ -2,8 +2,6 @@ import * as fs from 'fs/promises';
 import { task } from 'hardhat/config';
 import Pinata from '@pinata/sdk';
 
-const ipfsPath = (ipfsHash: string) => `ipfs://${ipfsHash}`;
-
 task('ipfs-upload')
   .addPositionalParam('name', 'NFT name')
   .addPositionalParam('description', 'NFT description')
@@ -23,10 +21,8 @@ task('ipfs-upload')
     const metadata = {
       name,
       description,
-      image: ipfsPath(pinFileResponse.IpfsHash),
+      image: `ipfs://${pinFileResponse.IpfsHash}`,
     };
     const pinMetadataResponse = await pinata.pinJSONToIPFS(metadata);
-    console.log(
-      `Metdata uploaded to: ${ipfsPath(pinMetadataResponse.IpfsHash)}`
-    );
+    console.log(`Uploaded metadata CID: ${pinMetadataResponse.IpfsHash}`);
   });

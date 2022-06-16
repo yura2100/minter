@@ -21,6 +21,16 @@ describe('NFTMinter', () => {
     expect(nftMinter.address).to.be.properAddress;
   });
 
+  it('should return name', async () => {
+    const name = await nftMinter.name();
+    expect(name).to.equal('NFTMinter');
+  });
+
+  it('should return symbol', async () => {
+    const symbol = await nftMinter.symbol();
+    expect(symbol).to.equal('MINTER');
+  });
+
   it('should mint NFT', async () => {
     await expect(nftMinter.mint(signer.address, TOKEN_URI))
       .to.emit(nftMinter, 'Transfer')
@@ -28,7 +38,7 @@ describe('NFTMinter', () => {
     const owner = await nftMinter.ownerOf(1);
     expect(owner).to.equal(signer.address);
     const tokenURI = await nftMinter.tokenURI(1);
-    expect(tokenURI).to.equal(TOKEN_URI);
+    expect(tokenURI).to.equal(`ipfs://${TOKEN_URI}`);
   });
 
   it('should not mint NFT, if called by not an owner', async () => {
