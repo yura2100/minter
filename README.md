@@ -32,6 +32,10 @@ Copy enviroment variables
 
 `npx hardhat verify --network goerli <CONTRACT ADDRESS> <...args>`
 
+**Upload metadata to IPFS**
+
+`npx hardhat ipfs-upload <NFT NAME> <NFT DESCRIPTION> <ABSOLUTE PATH TO UPLOADED IMAGE>`
+
 **Mint NFT**
 
-`npx hadhat mint --network goerli <CONTRACT ADDRESS> <TO ADDRESS> <TOKEN URI>`
+`npx hardhat mint --network goerli <CONTRACT ADDRESS> <TO ADDRESS> <TOKEN URI>`
